@@ -12,14 +12,17 @@ const Home = () => {
       <div className="home-container">
         <div className="navbar">
           <div className="logo-one">
-            <img src="/client/public/Group.svg" />
+            <img src="/Group.svg" />
+            <span className="goodspace">goodspace</span>
           </div>
         </div>
         <div className="main">
           <div className="right">
-            <div className="logo-two"></div>
-            <h1>welcome to</h1>
-            <h1>Goodspace communication</h1>
+            <div className="logo-two">
+              <img src="/Group.svg" />
+            </div>
+            <h1 className="headline">welcome to</h1>
+            <h1 className="headline">Goodspace communication</h1>
           </div>
           <div className="left">
             <div className="links">
@@ -27,13 +30,39 @@ const Home = () => {
                 onClick={() => {
                   setloginState(false);
                 }}
+                sx={{
+                  fontSize: "20px",
+                  fontWeight: "700",
+                  color: "white",
+                  textTransform: "lowercase",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                  "&:focus": {
+                    backgroundColor: "transparent",
+                  },
+                  fontFamily: "poppins",
+                }}
               >
                 Signup
               </Button>
-              <span>/</span>
+              <span className="slash">/</span>
               <Button
                 onClick={() => {
                   setloginState(true);
+                }}
+                sx={{
+                  fontSize: "20px",
+                  fontWeight: "700",
+                  color: "white",
+                  textTransform: "lowercase",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                  "&:focus": {
+                    backgroundColor: "transparent",
+                  },
+                  fontFamily: "poppins",
                 }}
               >
                 Login

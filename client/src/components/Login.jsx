@@ -1,17 +1,35 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import { TextField, Button, Container, Box, Typography } from "@mui/material";
 
-const handleLogin = (e) => {
-  // Perform login logic here
-  e.preventDefault();
-  console.log(`Username: ${username}, Password: ${password}`);
-};
-
 const Login = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    // Perform login logic here
+    e.preventDefault();
+
+    console.log(username, password);
+
+    try {
+      const response = await axios.post("http://localhost:3000/login", {
+        username,
+        password,
+      });
+
+      console.log(response);
+      alert(`${response.data.message}`);
+      navigate("/landing");
+    } catch (error) {
+      alert(error.response.data.message);
+      console.log(error);
+    }
+  };
   return (
     <Container maxWidth="xs">
       <Box
@@ -24,15 +42,40 @@ const Login = () => {
       >
         <Box component="form" noValidate sx={{ mt: 1 }}>
           <TextField
-            margin="normal"
             required
             fullWidth
             id="username"
             label="Username"
             name="username"
-            autoFocus
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            sx={{
+              "& input": {
+                backgroundColor: "white",
+              },
+              "& input:focus": {
+                outline: "none",
+              },
+              "& .MuiInputLabel-root": {
+                color: "grey",
+              },
+              "& .Mui-focused": {
+                "& .MuiInputLabel-root": {
+                  color: "grey",
+                },
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white",
+                },
+              },
+            }}
           />
           <TextField
             margin="normal"
@@ -44,6 +87,33 @@ const Login = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            sx={{
+              "& input": {
+                backgroundColor: "white",
+              },
+              "& input:focus": {
+                outline: "none",
+              },
+              "& .MuiInputLabel-root": {
+                color: "grey",
+              },
+              "& .Mui-focused": {
+                "& .MuiInputLabel-root": {
+                  color: "grey",
+                },
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white",
+                },
+              },
+            }}
           />
           <Button
             type="submit"

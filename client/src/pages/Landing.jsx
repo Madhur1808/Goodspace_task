@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import CameraComponent from "../components/Camera";
 
 import Chat from "../components/Chat";
-import Audio_to_text from "../components/audio_to_text";
+import Audio_to_text from "../components/Audio_to_text";
 const Landing = () => {
   return (
     <div>

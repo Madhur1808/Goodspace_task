@@ -11,16 +11,18 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
-    // Perform login logic here
     e.preventDefault();
 
     console.log(username, password);
 
     try {
-      const response = await axios.post("http://localhost:3000/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://goodspace-task.onrender.com/login",
+        {
+          username,
+          password,
+        }
+      );
 
       console.log(response);
       alert(`${response.data.message}`);

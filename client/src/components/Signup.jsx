@@ -13,11 +13,14 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/signup", {
-        username,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://goodspace-task.onrender.com/signup",
+        {
+          username,
+          email,
+          password,
+        }
+      );
 
       console.log(response);
       alert(`${response.data.message} Please Login`);

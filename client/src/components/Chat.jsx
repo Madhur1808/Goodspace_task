@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Container, TextField, Button, Typography, Box } from "@mui/material";
-// import { fetchdata } from "../api.js";
 
 const Chat = () => {
   const [message, setMessage] = useState("");
@@ -30,33 +29,31 @@ const Chat = () => {
   }, [chat]);
 
   return (
-    <Container maxWidth="sm">
+    <Container>
       <Box my={4}>
-        <Typography variant="h4" align="center" gutterBottom>
-          Chat App
-        </Typography>
-
         <div
+          className="chat-container"
           ref={chatContainerRef}
           style={{
-            height: "300px",
+            backgroundColor: "rgba(255, 255, 255, 0.624)",
+            backdropFilter: blur("5px"),
+            borderRadius: "20px",
+            width: "600px",
+            height: "200px",
             overflowY: "scroll",
             border: "1px solid #ccc",
             padding: "10px",
             display: "flex",
-            flexDirection: "column", // Reverses the order of messages
-            scrollbarWidth: "none", // Firefox
-            msOverflowStyle: "none", // Internet Explorer and Edge
-            "&::-webkit-scrollbar": {
-              display: "none", // Hide scrollbar for Chrome and Safari
-            },
+            flexDirection: "column",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
           }}
         >
           {chat.map((chatItem, index) => (
             <div
               key={index}
               style={{
-                textAlign: chatItem.sender === "user" ? "right" : "left",
+                textAlign: chatItem.sender === "AI" ? "left" : "right",
               }}
             >
               <strong>{chatItem.sender}:</strong> {chatItem.text}
@@ -75,12 +72,54 @@ const Chat = () => {
                 sendMessage();
               }
             }}
+            sx={{
+              "& input": {
+                backgroundColor: "white",
+              },
+              "& input:focus": {
+                outline: "none",
+              },
+              "& .MuiInputLabel-root": {
+                color: "grey",
+              },
+              "& .Mui-focused": {
+                "& .MuiInputLabel-root": {
+                  color: "grey",
+                },
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white",
+                },
+              },
+            }}
           />
           <Button
             variant="contained"
             color="primary"
             onClick={sendMessage}
-            style={{ marginLeft: "10px" }}
+            sx={{
+              // padding: "0 20px 0 20px",
+              marginLeft: "10px",
+              fontSize: "20px",
+              fontWeight: "700",
+              color: "white",
+              textTransform: "lowercase",
+
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+              "&:focus": {
+                backgroundColor: "transparent",
+              },
+              fontFamily: "poppins",
+            }}
           >
             Send
           </Button>

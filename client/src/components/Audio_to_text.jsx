@@ -24,8 +24,6 @@ const Audio_to_text = () => {
   return (
     <>
       <div className="container">
-        <h2>Speech to Text Converter</h2>
-
         <div className="main-content" onClick={() => setTextToCopy(transcript)}>
           {transcript}
         </div>

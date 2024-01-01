@@ -1,5 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Inter&family=Lato&family=Libre+Baskerville&family=Merriweather:wght@700&family=Work+Sans&display=swap"); */
-
 * {
   margin: 0;
   padding: 0;
@@ -7,25 +5,13 @@
   font-family: "Work Sans", sans-serif;
 }
 
-/* html {
-  color: rgb(96 101 123);
-} */
-
-/* body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  background: rgb(255 255 255);
-} */
-
 .container {
   padding: 30px;
   margin-top: 80px;
 }
 
 h2 {
-  color: rgb(43 45 56);
+  color: rgb(53, 49, 49);
   text-align: center;
   font-size: 28px;
   letter-spacing: -0.2px;
@@ -37,10 +23,12 @@ p {
   text-align: center;
   margin-top: 24px;
   margin-bottom: 100px;
+  /* color: white; */
 }
 
 .main-content {
   max-width: 25rem;
+  min-width: 25rem;
   width: 100%;
   min-height: 250px;
   height: auto;
@@ -48,8 +36,9 @@ p {
   position: relative;
   resize: none;
   box-shadow: 0 12px 48px 0px rgb(109 117 141 / 20%);
-  background: rgb(255 255 255);
-  border: 0.5px solid rgb(231 233 245);
+
+  background: rgba(255, 255, 255, 0.624);
+  backdrop-filter: blur(5px);
   border-radius: 16px;
 }
 
@@ -72,7 +61,7 @@ p,
 
 button {
   /* position: absolute; */
-  background: rgb(17, 116, 166);
+  background: rgba(9, 131, 192, 0.951);
   color: rgb(255 255 255);
   border-radius: 6px;
   padding: 8px 8px;

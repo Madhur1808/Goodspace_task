@@ -13,7 +13,9 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    console.log(username, password);
+    if (username.length === 0 || password.length === 0) {
+      return alert("Please fill all the details");
+    }
 
     try {
       const response = await axios.post(

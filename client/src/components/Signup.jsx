@@ -12,6 +12,9 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+
+    if (username.length === 0 || email.length == 0 || password.length == 0)
+      return alert("Please fill all the details.");
     try {
       const response = await axios.post(
         "https://goodspace-task.onrender.com/signup",
@@ -23,16 +26,12 @@ const Signup = () => {
       );
 
       console.log(response);
-      alert(`${response.data.message} Please Login`);
+      alert(`${response.data.message} ,Please Login`);
+      window.location.reload();
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
-  // console.log(
-  //   `Username: ${username}, Email: ${email}, Password: ${password}`
-  // );
-  // alert("User registered succesfully ");
-  // Example: You might send a request to create a new user account
 
   return (
     <Container maxWidth="xs">

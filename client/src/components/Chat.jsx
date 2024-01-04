@@ -1,31 +1,71 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Container, TextField, Button, Typography, Box } from "@mui/material";
-
+import { useSpeechSynthesis } from "react-speech-kit";
+import axios from "axios";
 const Chat = () => {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
+  const [aimessage, setaimessage] = useState("");
   const chatContainerRef = useRef(null);
+  const { speak } = useSpeechSynthesis();
 
-  const sendMessage = () => {
+  const username = localStorage.getItem("username");
+  const setChatHandler = async () => {
+    try {
+      const response = await axios.post(
+        "https://goodspace-task.onrender.com/setchat",
+        {
+          username,
+          chat,
+        }
+      );
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const sendMessage = async () => {
     if (message.trim() !== "") {
       const newChat = [...chat, { text: message, sender: "user" }];
-      setChat(newChat);
-      setMessage("");
 
-      setTimeout(() => {
-        const aiResponse = { text: "This is AI response...", sender: "AI" };
+      setChat(newChat);
+      console.log(newChat);
+      // setMess  age("");
+
+      // const aimessage = "This is AI response";
+      //
+
+      try {
+        const response = await axios.post(
+          "https://goodspace-task.onrender.com/openaichat",
+          {
+            message,
+          }
+        );
+        // console.log(response);
+        const data = response.data.message;
+        console.log(data);
+        setaimessage(data);
+        const aiResponse = { text: aimessage, sender: "AI" };
         setChat([...newChat, aiResponse]);
-      }, 500);
+        speak({ text: aimessage });
+        setMessage("");
+      } catch (error) {
+        console.log("control hererereree");
+        console.log(error);
+      }
     }
-    // fetchdata();
   };
 
   useEffect(() => {
-    // Scroll chat container to the bottom on chat update
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
     }
+
+    setChatHandler();
   }, [chat]);
 
   return (

@@ -28,6 +28,7 @@ const Login = () => {
 
       console.log(response);
       alert(`${response.data.message}`);
+      localStorage.setItem("username", username);
       navigate("/landing");
     } catch (error) {
       alert(error.response.data.message);

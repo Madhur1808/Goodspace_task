@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 const Navbar = () => {
   const navigate = useNavigate();
   const logoutHandler = () => {
+    localStorage.removeItem("username");
     navigate("/");
   };
   return (
